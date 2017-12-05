@@ -1,0 +1,15 @@
+[Unit]
+Description=Packet Filtering Framework
+DefaultDependencies=no
+After=systemd-sysctl.service
+Before=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/ip6tables-restore /etc/firewall/ip6tables.rules
+ExecReload=/sbin/ip6tables-restore /etc/firewall/ip6tables.rules
+ExecStop=/etc/firewall/flush-ip6tables.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=Basic iptables Firewall
+DefaultDependencies=no
+After=systemd-sysctl.service
+Before=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/iptables-restore /etc/firewall/iptables.rules
+ExecReload=/sbin/iptables-restore /etc/firewall/iptables.rules
+ExecStop=/etc/firewall/flush-iptables.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
