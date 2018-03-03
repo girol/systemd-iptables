@@ -1,0 +1,3 @@
+Copiar os arquivos para as respecitivas pastas e subir o serviço com:
+
+service firewall start
